@@ -1,3 +1,3 @@
 # taypi
 
-A collection of Go programs
+A collection of practice Go programs
