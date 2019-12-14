@@ -17,10 +17,9 @@ func main() {
 	handler := resHandler{}
 
 	server := http.Server{
-		Addr: "127.0.0.1:5000",
+		Addr:    "127.0.0.1:5000",
+		Handler: &handler,
 	}
-
-	http.Handle("/hello", &handler)
 
 	http2.ConfigureServer(&server, &http2.Server{})
 	server.ListenAndServeTLS("cert.pem", "key.pem")
