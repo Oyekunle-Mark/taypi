@@ -14,7 +14,7 @@ func helloFunc(w http.ResponseWriter, r *http.Request) {
 func log(h http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		name := runtime.FuncForPC(reflect.ValueOf(h).Pointer()).Name()
-		fmt.Printf("Hanlder function called: %s", name)
+		fmt.Printf("Hanlder function called: %s\n", name)
 
 		h(w, r)
 	}
