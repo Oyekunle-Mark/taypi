@@ -5,14 +5,14 @@ import (
 	"net/http"
 )
 
-type handler struct{}
+type hello struct{}
 
-func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *hello) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Hello, World!")
 }
 
 func main() {
-	handler := handler{}
+	handler := hello{}
 
 	server := http.Server{
 		Addr:    "127.0.0.1:5000",
