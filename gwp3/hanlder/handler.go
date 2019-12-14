@@ -5,28 +5,28 @@ import (
 	"net/http"
 )
 
-type hello struct{}
+type helloHandler struct{}
 
-func (h *hello) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *helloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Hello!")
 }
 
-type world struct{}
+type worldHandler struct{}
 
-func (h *world) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *worldHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "World!")
 }
 
 func main() {
-	hello := hello{}
-	world := world{}
+	hello := helloHandler{}
+	world := worldHandler{}
 
 	server := http.Server{
 		Addr: "127.0.0.1:5000",
 	}
 
 	http.Handle("/hello", &hello)
-	http.Handle("world", &world)
+	http.Handle("/world", &world)
 
 	server.ListenAndServe()
 }
