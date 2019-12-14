@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	"golang.org/x/net/http2"
 )
 
 type resHandler struct{}
@@ -20,5 +22,6 @@ func main() {
 
 	http.Handle("/hello", &handler)
 
-	server.ListenAndServe()
+	http2.ConfigureServer(&server, &http2.Server{})
+	server.ListenAndServeTLS("cert.pem", "key.pem")
 }
