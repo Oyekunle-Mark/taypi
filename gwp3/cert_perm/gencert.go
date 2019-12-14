@@ -15,10 +15,11 @@ import (
 func main() {
 	max := new(big.Int).Lsh(big.NewInt(1), 128)
 	serialNumber, _ := rand.Int(rand.Reader, max)
+
 	subject := pkix.Name{
-		Organization:       []string{"Manning Publications Co."},
-		OrganizationalUnit: []string{"Books"},
-		CommonName:         "Go Web Programming",
+		Organization:       []string{"Oyekunle Inc."},
+		OrganizationalUnit: []string{"Software"},
+		CommonName:         "Hackers Hub",
 	}
 
 	template := x509.Certificate{
