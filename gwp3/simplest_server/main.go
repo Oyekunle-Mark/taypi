@@ -8,5 +8,5 @@ func main() {
 		Handler: nil,
 	}
 
-	server.ListenAndServe()
+	server.ListenAndServeTLS("cert.pem", "key.pem")
 }
