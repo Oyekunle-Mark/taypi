@@ -10,7 +10,7 @@ func body(w http.ResponseWriter, r *http.Request) {
 	body := make([]byte, len)
 
 	r.Body.Read(body)
-	fmt.Fprintln(w, body)
+	fmt.Fprintln(w, string(body))
 }
 
 func main() {
