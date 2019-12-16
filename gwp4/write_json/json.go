@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// Post is the structure of the post data type to be marshalled to json
 type Post struct {
 	User   string
 	Thread []string
