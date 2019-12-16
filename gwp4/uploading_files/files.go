@@ -1,0 +1,31 @@
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func parse(w http.ResponseWriter, r *http.Request) {
+	r.ParseMultipartForm(1024)
+
+	fileHeader := r.MultipartForm.File["uploaded"][0]
+	file, err := fileHeader.Open()
+
+	if err == nil {
+		data, err := ioutil.ReadAll(file)
+
+		if err == nil {
+			fmt.Fprintln(w, data)
+		}
+	}
+}
+
+func main() {
+	server := http.Server{
+		Addr: "127.0.0.1:5000",
+	}
+
+	http.HandleFunc("/parse", parse)
+	server.ListenAndServe()
+}
