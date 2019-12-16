@@ -15,8 +15,8 @@ func sendCookie(w http.ResponseWriter, r *http.Request) {
 		HttpOnly: true,
 	}
 
-	w.Header().Add("Set-Cookie", cookie1.String())
 	w.Header().Set("Set-Cookie", cookie2.String())
+	w.Header().Add("Set-Cookie", cookie1.String())
 }
 
 func main() {
