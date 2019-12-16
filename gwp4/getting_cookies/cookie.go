@@ -34,5 +34,7 @@ func main() {
 	}
 
 	http.HandleFunc("/cookie", sendCookie)
+	http.HandleFunc("/getCookie", getCookie)
+	
 	server.ListenAndServe()
 }
