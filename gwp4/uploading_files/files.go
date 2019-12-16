@@ -16,7 +16,7 @@ func parse(w http.ResponseWriter, r *http.Request) {
 		data, err := ioutil.ReadAll(file)
 
 		if err == nil {
-			fmt.Fprintln(w, data)
+			fmt.Fprintln(w, string(data))
 		}
 	}
 }
