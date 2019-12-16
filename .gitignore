@@ -13,3 +13,6 @@
 
 # the https certificate and private key
 *.pem
+
+# vs code ds store
+.DS_Store
