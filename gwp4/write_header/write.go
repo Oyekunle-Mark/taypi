@@ -1,6 +1,9 @@
 package main
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+)
 
 func writeExample(w http.ResponseWriter, r *http.Request) {
 	str := `
@@ -21,11 +24,18 @@ func writeExample(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(str))
 }
 
+func writeHeaderExample(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(501)
+
+	fmt.Fprintln(w, "Service not available.")
+}
+
 func main() {
 	server := http.Server{
 		Addr: "127.0.0.1:5000",
 	}
 
 	http.HandleFunc("/write", writeExample)
+	http.HandleFunc("/writeHeader", writeHeaderExample)
 	server.ListenAndServe()
 }
