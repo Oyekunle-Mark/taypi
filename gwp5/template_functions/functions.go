@@ -18,3 +18,12 @@ func process(w http.ResponseWriter, r *http.Request) {
 
 	t.Execute(w, time.Now())
 }
+
+func main() {
+	server := http.Server{
+		Addr: "127.0.0.1:5000",
+	}
+
+	http.HandleFunc("/process", process)
+	server.ListenAndServe()
+}
