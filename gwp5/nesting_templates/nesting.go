@@ -2,11 +2,12 @@ package main
 
 import (
 	"net/http"
+	"text/template"
 )
 
 func process(w http.ResponseWriter, r *http.Request) {
-	// t, _ := template.ParseFiles("tmpl.html")
-	// t.Execute(w, rand.Intn(10) > 5)
+	t, _ := template.ParseFiles("tmpl.html")
+	t.ExecuteTemplate(w, "layout", "")
 }
 
 func main() {
