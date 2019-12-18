@@ -10,6 +10,8 @@
     <p>The dot is {{ . }}</p>
     {{ with "Touche" }}
         <p>Now the dot is {{ . }}</p>
+    {{ else }}
+        <p>The dot is still {{ . }}</p>
     {{ end }}
     <p>The dot is {{ . }} again.</p>
 </body>
