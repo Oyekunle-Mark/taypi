@@ -7,7 +7,7 @@ import (
 )
 
 func formatDate(t time.Time) string {
-	layout := "2011-01-02"
+	layout := "2006-01-02"
 	return t.Format(layout)
 }
 
