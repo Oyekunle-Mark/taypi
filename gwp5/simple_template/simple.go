@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	"text/template"
+	"html/template"
 )
 
 func simple(w http.ResponseWriter, r *http.Request) {
