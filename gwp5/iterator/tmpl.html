@@ -8,8 +8,8 @@
   </head>
   <body>
     <ul>
-        {{ range . }}
-            <li>{{ . }}</li>
+        {{ range $key, $value := . }}
+            <li>Day {{ $key }} - {{ $value }}</li>
         {{ else }}
             Please provide days of the week!
         {{ end }}
