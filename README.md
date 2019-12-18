@@ -1,3 +1,3 @@
 # Random Go Programs
 
-A collection of practice Go programs
+A collection of Go programs
