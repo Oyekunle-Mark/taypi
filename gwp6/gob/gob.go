@@ -22,7 +22,23 @@ func store(data interface{}, filename string) {
 	}
 
 	err = ioutil.WriteFile(filename, buffer.Bytes(), 0600)
-	
+
+	if err != nil {
+		panic(err)
+	}
+}
+
+func load(data interface{}, filename string) {
+	raw, err := ioutil.ReadFile(filename)
+
+	if err != nil {
+		panic(err)
+	}
+
+	buffer := bytes.NewBuffer(raw)
+	dec := gob.NewDecoder(buffer)
+	err = dec.Decode(data)
+
 	if err != nil {
 		panic(err)
 	}
