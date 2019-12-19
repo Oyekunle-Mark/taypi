@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/csv"
+	"fmt"
 	"os"
 	"strconv"
 )
@@ -64,4 +65,9 @@ func main() {
 		post := Post{int(id), item[1], item[2]}
 		posts = append(posts, post)
 	}
+
+	fmt.Println(posts[0].ID)
+	fmt.Println(posts[0].Content)
+	fmt.Println(posts[0].Author)
+	fmt.Println(posts)
 }
