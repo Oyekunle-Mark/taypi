@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 
 	_ "github.com/lib/pq"
@@ -38,6 +39,10 @@ func init() {
 
 // Create method on Comment type creates a new comment
 func (comment *Comment) Create() (err error) {
+	if comment.Post == nil {
+		err = errors.New("Post not found")
+	}
+
 	query := `
 		INSERT INTO 
 		comments (content, author, post_id)
