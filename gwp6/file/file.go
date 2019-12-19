@@ -15,5 +15,5 @@ func main() {
 	}
 
 	readData, _ := ioutil.ReadFile("data1")
-	fmt.Println("Read file data1", readData)
+	fmt.Println("Read file data1:\n", string(readData))
 }
