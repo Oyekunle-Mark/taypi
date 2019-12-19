@@ -5,3 +5,6 @@ type Post struct {
 	Content string
 	Author  string
 }
+
+var PostByID map[int]*Post
+var PostByAuthor map[string][]*Post
