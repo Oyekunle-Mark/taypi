@@ -15,5 +15,18 @@ func store(post Post) {
 }
 
 func main() {
-	
+	PostByID = make(map[int]*Post)
+	PostsByAuthor = make(map[string][]*Post)
+
+	post1 := Post{ID: 1, Content: "First content.", Author: "Dante Cuavas"}
+	post2 := Post{ID: 2, Content: "Second content.", Author: "Pirly Matti"}
+	post3 := Post{ID: 3, Content: "Third content.", Author: "Dante Cuavas"}
+	post4 := Post{ID: 4, Content: "Fourth content.", Author: "Rossi Manuel"}
+	post5 := Post{ID: 5, Content: "Fifth content.", Author: "Dante Cuavas"}
+
+	store(post1)
+	store(post2)
+	store(post3)
+	store(post4)
+	store(post5)
 }
