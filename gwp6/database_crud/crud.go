@@ -94,7 +94,7 @@ func (post *Post) Create() (err error) {
 func (post *Post) Update() (err error) {
 	query := `
 		UPDATE posts
-		SET content = $2 author = $3
+		SET content = $2, author = $3
 		WHERE id = $1
 	`
 	_, err = Db.Exec(query, post.ID, post.Content, post.Author)
@@ -120,11 +120,15 @@ func main() {
 	fmt.Println(post)
 
 	readPost, _ := GetPost(post.ID)
-	fmt.Println(post)
+	fmt.Println(readPost)
 
 	readPost.Content = "Get rich or die trying..."
 	readPost.Author = "50 Cent"
-	readPost.Update()
+	err := readPost.Update()
+
+	if err != nil {
+		panic(err)
+	}
 
 	posts, _ := Posts(1)
 	fmt.Println(posts)
