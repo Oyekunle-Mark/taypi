@@ -2,13 +2,16 @@ package main
 
 import "fmt"
 
+// Post is the post struct
 type Post struct {
 	ID      int
 	Content string
 	Author  string
 }
 
+// PostByID will map the posts to their IDs
 var PostByID map[int]*Post
+// PostsByAuthor will map Posts array to authors
 var PostsByAuthor map[string][]*Post
 
 func store(post Post) {
