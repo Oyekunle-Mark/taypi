@@ -25,6 +25,7 @@ func init() {
 	}
 }
 
+// Posts returns a number of post based on limit
 func Posts(limit int) (posts []Post, err error) {
 	query := `
 		SELECT
@@ -53,6 +54,7 @@ func Posts(limit int) (posts []Post, err error) {
 	return
 }
 
+// GetPost gets all the posts in the db
 func GetPost(id int) (post Post, err error) {
 	post = Post{}
 
@@ -66,6 +68,7 @@ func GetPost(id int) (post Post, err error) {
 	return
 }
 
+// Create adds a post to the db
 func (post *Post) Create() (err error) {
 	query := `
 		INSERT
@@ -85,6 +88,7 @@ func (post *Post) Create() (err error) {
 	return
 }
 
+// Update updates the content of a post in the db
 func (post *Post) Update() (err error) {
 	query := `
 		UPDATE posts
@@ -95,6 +99,7 @@ func (post *Post) Update() (err error) {
 	return
 }
 
+// Delete removes a post from the db
 func (post *Post) Delete() (err error) {
 	query := `
 		DELETE
