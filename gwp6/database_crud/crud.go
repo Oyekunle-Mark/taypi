@@ -36,6 +36,18 @@ func init() {
 	}
 }
 
+// Create method on Comment type creates a new comment
+func (comment *Comment) Create() (err error) {
+	query := `
+		INSERT INTO 
+		comments (content, author, post_id)
+		VALUES ($1, $2, $3)
+		RETURNING id
+	`
+	err = Db.QueryRow(query, comment.Content, comment.Author, comment.Post.ID).Scan(&comment.ID)
+	return
+}
+
 // Posts returns a number of post based on limit
 func Posts(limit int) (posts []Post, err error) {
 	query := `
