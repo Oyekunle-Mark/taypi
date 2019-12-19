@@ -158,10 +158,11 @@ func (post *Post) Delete() (err error) {
 
 func main() {
 	post := Post{Content: "...my soldiers remain eternal.", Author: "Tu Pac"}
-
-	fmt.Println(post)
 	post.Create()
 	fmt.Println(post)
+
+	comment := Comment{Content: "Hot lines right there.", Author: "Jama Man", Post: &post}
+	comment.Create()
 
 	readPost, _ := GetPost(post.ID)
 	fmt.Println(readPost)
