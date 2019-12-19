@@ -88,7 +88,17 @@ func (post *Post) Update() (err error) {
 		SET content = $2 author = $3
 		WHERE id = $1
 	`
-	_ , err = Db.Exec(query, post.ID, post.Content, post.Author)
+	_, err = Db.Exec(query, post.ID, post.Content, post.Author)
+	return
+}
+
+func (post *Post) Delete() (err error) {
+	query := `
+		DELETE
+		FROM posts
+		WHERE id = $1
+	`
+	_, err = Db.Exec(query, post.ID)
 	return
 }
 
