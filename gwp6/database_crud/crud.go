@@ -67,7 +67,7 @@ func (post *Post) Create() (err error) {
 	query := `
 		INSERT
 		INTO posts
-		(content, authors)
+		(content, author)
 		VALUES ($1, $2)
 		RETURNING id
 	`
@@ -79,6 +79,16 @@ func (post *Post) Create() (err error) {
 
 	defer stmt.Close()
 	err = stmt.QueryRow(post.Content, post.Author).Scan(&post.ID)
+	return
+}
+
+func (post *Post) Update() (err error) {
+	query := `
+		UPDATE posts
+		SET content = $2 author = $3
+		WHERE id = $1
+	`
+	_ , err = Db.Exec(query, post.ID, post.Content, post.Author)
 	return
 }
 
