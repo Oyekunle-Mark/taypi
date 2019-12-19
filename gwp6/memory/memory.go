@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Post struct {
 	ID      int
 	Content string
@@ -29,4 +31,11 @@ func main() {
 	store(post3)
 	store(post4)
 	store(post5)
+
+	fmt.Println(PostByID[1])
+	fmt.Println(PostByID[2])
+
+	for _, post := range PostsByAuthor["Dante Cuavas"] {
+		fmt.Println(post)
+	}
 }
