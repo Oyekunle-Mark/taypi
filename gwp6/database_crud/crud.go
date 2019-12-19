@@ -9,9 +9,18 @@ import (
 
 // Post is the post struct
 type Post struct {
+	ID       int
+	Content  string
+	Author   string
+	Comments []Comment
+}
+
+// Comment added to posts
+type Comment struct {
 	ID      int
 	Content string
 	Author  string
+	Post    *Post
 }
 
 // Db instance
