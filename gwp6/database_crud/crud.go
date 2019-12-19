@@ -50,6 +50,19 @@ func Posts(limit int) (posts []Post, err error) {
 	return
 }
 
+func GetPost(id int) (post Post, err error) {
+	post = Post{}
+
+	query := `
+		SELECT
+		id, content, author
+		FROM posts
+		WHERE id = $1
+	`
+	err = Db.QueryRow(query, id).Scan(&post.ID, &post.Content, &post.Author)
+	return
+}
+
 func main() {
 
 }
