@@ -2,12 +2,14 @@ package main
 
 import "database/sql"
 
+// Post is the post struct
 type Post struct {
 	ID      int
 	Content string
 	Author  string
 }
 
+// Db instance
 var Db *sql.DB
 
 func init() {
@@ -18,4 +20,36 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func Posts(limit int) (posts []Post, err error) {
+	query := `
+		SELECT
+		id, content, author
+		FROM posts
+		LIMIT $1
+	`
+	rows, err := Db.Query(query, limit)
+
+	if err != nil {
+		return
+	}
+
+	for rows.Next() {
+		post := Post{}
+		err := rows.Scan(&post.ID, &post.Content, &post.Author)
+
+		if err != nil {
+			return nil, err
+		}
+
+		posts = append(posts, post)
+	}
+
+	rows.Close()
+	return
+}
+
+func main() {
+
 }
