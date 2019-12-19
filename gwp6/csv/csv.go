@@ -7,6 +7,7 @@ import (
 	"strconv"
 )
 
+// Post is the post struct
 type Post struct {
 	ID      int
 	Content string
