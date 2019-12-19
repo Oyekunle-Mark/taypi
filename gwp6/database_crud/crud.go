@@ -1,6 +1,9 @@
 package main
 
-import "database/sql"
+import (
+	"database/sql"
+	"fmt"
+)
 
 // Post is the post struct
 type Post struct {
@@ -103,5 +106,21 @@ func (post *Post) Delete() (err error) {
 }
 
 func main() {
+	post := Post{Content: "...my soldiers remain eternal.", Author: "Tu Pac"}
 
+	fmt.Println(post)
+	post.Create()
+	fmt.Println(post)
+
+	readPost, _ := GetPost(post.ID)
+	fmt.Println(post)
+
+	readPost.Content = "Get rich or die trying..."
+	readPost.Author = "50 Cent"
+	readPost.Update()
+
+	posts, _ := Posts(1)
+	fmt.Println(posts)
+
+	readPost.Delete()
 }
