@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/gob"
+	"fmt"
 	"io/ioutil"
 )
 
@@ -42,4 +43,16 @@ func load(data interface{}, filename string) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func main() {
+	post := Post{ID: 1, Content: "Hello World!", Author: "Sau Sheong"}
+
+	store(post, "post1")
+
+	var postRead Post
+
+	load(&postRead, "post1")
+
+	fmt.Println(postRead)
 }
