@@ -63,6 +63,25 @@ func GetPost(id int) (post Post, err error) {
 	return
 }
 
+func (post *Post) Create() (err error) {
+	query := `
+		INSERT
+		INTO posts
+		(content, authors)
+		VALUES ($1, $2)
+		RETURNING id
+	`
+	stmt, err := Db.Prepare(query)
+
+	if err != nil {
+		return
+	}
+
+	defer stmt.Close()
+	err = stmt.QueryRow(post.Content, post.Author).Scan(&post.ID)
+	return
+}
+
 func main() {
 
 }
