@@ -7,4 +7,13 @@ type Post struct {
 }
 
 var PostByID map[int]*Post
-var PostByAuthor map[string][]*Post
+var PostsByAuthor map[string][]*Post
+
+func store(post Post) {
+	PostByID[post.ID] = &post
+	PostsByAuthor[post.Author] = append(PostsByAuthor[post.Author], &post)
+}
+
+func main() {
+	
+}
