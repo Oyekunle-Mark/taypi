@@ -39,4 +39,29 @@ func main() {
 	}
 
 	writer.Flush()
+
+	file, err := os.Open("posts.csv")
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer file.Close()
+
+	reader := csv.NewReader(file)
+	reader.FieldsPerRecord = -1
+
+	records, err := reader.ReadAll()
+
+	if err != nil {
+		panic(err)
+	}
+
+	var posts []Post
+
+	for _, item := range records {
+		id, _ := strconv.ParseInt(item[0], 0, 0)
+		post := Post{int(id), item[1], item[2]}
+		posts = append(posts, post)
+	}
 }
