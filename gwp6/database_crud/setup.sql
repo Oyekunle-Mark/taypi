@@ -1,4 +1,4 @@
--- drop the table first should they exist
+-- drop the tables first should they exist
 DROP TABLE IF EXISTS posts CASCADE;
 DROP TABLE IF EXISTS comments;
 
