@@ -1,5 +1,3 @@
-BEGIN;
-
 -- drop the table first should they exist
 DROP TABLE IF EXISTS posts CASCADE;
 DROP TABLE IF EXISTS comments;
@@ -18,5 +16,3 @@ CREATE TABLE comments
     author VARCHAR(255),
     post_id INTEGER REFERENCES posts(id)
 );
-
-COMMIT;
