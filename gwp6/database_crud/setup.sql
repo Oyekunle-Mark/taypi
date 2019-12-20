@@ -2,6 +2,7 @@
 DROP TABLE IF EXISTS posts CASCADE;
 DROP TABLE IF EXISTS comments;
 
+-- Create posts table
 CREATE TABLE posts
 (
     id SERIAL PRIMARY KEY,
@@ -9,6 +10,7 @@ CREATE TABLE posts
     author VARCHAR(255)
 );
 
+-- Create comments table
 CREATE TABLE comments
 (
     id SERIAL PRIMARY KEY,
