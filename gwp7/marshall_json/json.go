@@ -1,5 +1,11 @@
 package main
 
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+)
+
 // Post is the structure of the json file
 type Post struct {
 	ID       int       `json:"id"`
@@ -41,5 +47,19 @@ func main() {
 				Author:  "Betty",
 			},
 		},
+	}
+
+	jsonData, err := json.MarshalIndent(&post, "", "\t\t")
+
+	if err != nil {
+		fmt.Println("Error marshalling to JSON:", err)
+		return
+	}
+
+	err = ioutil.WriteFile("post.json", jsonData, 0644)
+
+	if err != nil {
+		fmt.Println("Error writing JSON to file:", err)
+		return
 	}
 }
