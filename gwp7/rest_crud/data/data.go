@@ -13,13 +13,12 @@ type Post struct {
 	Author  string `json:"author"`
 }
 
-// Db instance
-var Db *sql.DB
+var db *sql.DB
 
 func init() {
 	var err error
 
-	Db, err = sql.Open("postgres", "user=gwp dbname=gwp password=gwp sslmode=disable")
+	db, err = sql.Open("postgres", "user=gwp dbname=gwp password=gwp sslmode=disable")
 
 	if err != nil {
 		panic(err)
@@ -36,7 +35,7 @@ func Retrieve(id int) (post Post, err error) {
 		WHERE id = $1
 	`
 
-	err = Db.QueryRow(query, id).Scan(&post.ID, &post.Content, &post.Author)
+	err = db.QueryRow(query, id).Scan(&post.ID, &post.Content, &post.Author)
 	return
 }
 
@@ -49,7 +48,7 @@ func (post *Post) Create() (err error) {
 		VALUES ($1, $2)
 		RETURNING id
 	`
-	stmt, err := Db.Prepare(query)
+	stmt, err := db.Prepare(query)
 
 	if err != nil {
 		return
@@ -67,7 +66,7 @@ func (post *Post) Update() (err error) {
 		SET content = $2, author = $3
 		WHERE id = $1
 	`
-	_, err = Db.Exec(query, post.ID, post.Content, post.Author)
+	_, err = db.Exec(query, post.ID, post.Content, post.Author)
 	return
 }
 
@@ -78,6 +77,6 @@ func (post *Post) Delete() (err error) {
 		FROM posts
 		WHERE id = $1
 	`
-	_, err = Db.Exec(query, post.ID)
+	_, err = db.Exec(query, post.ID)
 	return
 }
