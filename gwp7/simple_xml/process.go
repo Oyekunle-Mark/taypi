@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+// Post is the structure of the XML file
 type Post struct {
 	XMLName xml.Name `xml:"post"`
 	ID      int      `xml:"id,attr"`
@@ -15,6 +16,7 @@ type Post struct {
 	XML     string   `xml:",innerxml"`
 }
 
+// Author is the author element
 type Author struct {
 	ID   int    `xml:"id,attr"`
 	Name string `xml:",chardata"`
