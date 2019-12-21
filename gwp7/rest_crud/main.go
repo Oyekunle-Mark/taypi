@@ -17,7 +17,7 @@ func main() {
 	server.ListenAndServe()
 }
 
-func handleGet(w http.ResponseWriter, r *http.Request) {
+func handleGet(w http.ResponseWriter, r *http.Request) (err error) {
 	id, err := strconv.Atoi(path.Base(r.URL.Path))
 
 	if err != nil {
@@ -41,7 +41,7 @@ func handleGet(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-func handlePost(w http.ResponseWriter, r *http.Request) {
+func handlePost(w http.ResponseWriter, r *http.Request) (err error) {
 	len := r.ContentLength
 	body := make([]byte, len)
 	r.Body.Read(body)
