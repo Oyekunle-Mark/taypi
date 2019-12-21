@@ -8,9 +8,9 @@ import (
 
 // Post is the post struct
 type Post struct {
-	ID      int
-	Content string
-	Author  string
+	ID      int    `json:"id"`
+	Content string `json:"content"`
+	Author  string `json:"author"`
 }
 
 // Db instance
