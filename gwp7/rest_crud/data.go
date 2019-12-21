@@ -35,69 +35,16 @@ func init() {
 	}
 }
 
-// Posts returns a number of post based on limit
-func Posts(limit int) (posts []Post, err error) {
-	query := `
-		SELECT
-		id, content, author
-		FROM posts
-		LIMIT $1
-	`
-	rows, err := Db.Query(query, limit)
-
-	if err != nil {
-		return
-	}
-
-	for rows.Next() {
-		post := Post{}
-		err := rows.Scan(&post.ID, &post.Content, &post.Author)
-
-		if err != nil {
-			return nil, err
-		}
-
-		posts = append(posts, post)
-	}
-
-	rows.Close()
-	return
-}
-
-// GetPost gets all the posts in the db
-func GetPost(id int) (post Post, err error) {
+func Retrieve(id int) (post Post, err error) {
 	post = Post{}
-	post.Comments = []Comment{}
 
 	query := `
-		SELECT
-		id, content, author
+		SELECT *
 		FROM posts
 		WHERE id = $1
 	`
+
 	err = Db.QueryRow(query, id).Scan(&post.ID, &post.Content, &post.Author)
-
-	query = `
-		SELECT
-		id, content, author
-		FROM comments
-		WHERE post_id = $1
-	`
-	rows, err := Db.Query(query, id)
-
-	for rows.Next() {
-		comment := Comment{Post: &post}
-
-		err = rows.Scan(&comment.ID, &comment.Content, &comment.Author)
-
-		if err != nil {
-			return
-		}
-
-		post.Comments = append(post.Comments, comment)
-	}
-
-	rows.Close()
 	return
 }
 
