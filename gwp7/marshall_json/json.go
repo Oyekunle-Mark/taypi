@@ -49,7 +49,7 @@ func main() {
 		},
 	}
 
-	jsonData, err := json.MarshalIndent(&post, "", "\t\t")
+	jsonData, err := json.MarshalIndent(&post, "", "\t")
 
 	if err != nil {
 		fmt.Println("Error marshalling to JSON:", err)
