@@ -35,6 +35,8 @@ func init() {
 	}
 }
 
+
+// Retrieve returns a post of id id
 func Retrieve(id int) (post Post, err error) {
 	post = Post{}
 
