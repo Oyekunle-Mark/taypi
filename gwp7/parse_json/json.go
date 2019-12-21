@@ -1,5 +1,12 @@
 package main
 
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"os"
+)
+
 type Post struct {
 	ID       int       `json:"id"`
 	Content  string    `json:"content"`
@@ -16,4 +23,27 @@ type Comment struct {
 	ID      int    `json:"id"`
 	Content string `json:"content"`
 	Author  string `json:"author"`
+}
+
+func main() {
+	jsonFile, err := os.Open("post.json")
+
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		return
+	}
+
+	defer jsonFile.Close()
+
+	jsonData, err := ioutil.ReadAll(jsonFile)
+
+	if err != nil {
+		fmt.Println("Error reading json data:", err)
+		return
+	}
+
+	var post Post
+
+	json.Unmarshal(jsonData, &post)
+	fmt.Println(post)
 }
