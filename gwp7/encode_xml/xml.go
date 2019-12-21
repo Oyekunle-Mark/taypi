@@ -29,8 +29,6 @@ func main() {
 		},
 	}
 
-	xmlData, err := xml.MarshalIndent(&post, "", "\t")
-
 	xmlFile, err := os.Create("post.xml")
 
 	if err != nil {
@@ -39,7 +37,7 @@ func main() {
 	}
 
 	encoder := xml.NewEncoder(xmlFile)
-	err = encoder.Encode(&xmlData)
+	err = encoder.Encode(&post)
 
 	if err != nil {
 		fmt.Println("Error encoding xml to file:", err)
