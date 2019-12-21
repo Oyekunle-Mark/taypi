@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 )
 
+// Post is the structure of the XML file
 type Post struct {
 	XMLName xml.Name `xml:"post"`
 	ID      string   `xml:"id,attr"`
@@ -13,6 +14,7 @@ type Post struct {
 	Author  Author   `xml:"author"`
 }
 
+// Author is the author element
 type Author struct {
 	ID   string `xml:"id,attr"`
 	Name string `xml:",chardata"`
