@@ -57,6 +57,7 @@ func main() {
 	}
 
 	encoder := json.NewEncoder(jsonFile)
+	encoder.SetIndent("", "\t")
 	err = encoder.Encode(&post)
 
 	if err != nil {
