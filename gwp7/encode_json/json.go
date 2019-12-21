@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"os"
 )
 
 // Post is the structure of the json file
@@ -49,17 +49,18 @@ func main() {
 		},
 	}
 
-	jsonData, err := json.MarshalIndent(&post, "", "\t")
+	jsonFile, err := os.Create("post.json")
 
 	if err != nil {
-		fmt.Println("Error marshalling to JSON:", err)
+		fmt.Println("Error creating json file:", err)
 		return
 	}
 
-	err = ioutil.WriteFile("post.json", jsonData, 0644)
+	encoder := json.NewEncoder(jsonFile)
+	err = encoder.Encode(&post)
 
 	if err != nil {
-		fmt.Println("Error writing JSON to file:", err)
+		fmt.Println("Error encoding json to file:", err)
 		return
 	}
 }
