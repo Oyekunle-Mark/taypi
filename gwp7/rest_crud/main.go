@@ -40,3 +40,21 @@ func handleGet(w http.ResponseWriter, r *http.Request) {
 	w.Write(jsonData)
 	return
 }
+
+func handlePost(w http.ResponseWriter, r *http.Request) {
+	len := r.ContentLength
+	body := make([]byte, len)
+	r.Body.Read(body)
+
+	var post data.Post
+	json.Unmarshal(body, &post)
+
+	err = post.Create()
+
+	if err != nil {
+		return
+	}
+
+	w.WriteHeader(200)
+	return
+}
