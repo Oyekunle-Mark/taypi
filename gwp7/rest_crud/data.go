@@ -1,16 +1,16 @@
-package main
+package data
 
 import (
 	"database/sql"
-
+	// the database driver
 	_ "github.com/lib/pq"
 )
 
 // Post is the post struct
 type Post struct {
-	ID       int
-	Content  string
-	Author   string
+	ID      int
+	Content string
+	Author  string
 }
 
 // Db instance
@@ -25,7 +25,6 @@ func init() {
 		panic(err)
 	}
 }
-
 
 // Retrieve returns a post of id id
 func Retrieve(id int) (post Post, err error) {
