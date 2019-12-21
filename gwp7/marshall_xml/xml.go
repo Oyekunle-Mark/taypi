@@ -29,7 +29,7 @@ func main() {
 		},
 	}
 
-	xmlData, err := xml.Marshal(&post)
+	xmlData, err := xml.MarshalIndent(&post, "", "\t")
 
 	if err != nil {
 		fmt.Println("Error marshalling to xml:", err)
