@@ -37,6 +37,7 @@ func main() {
 	}
 
 	encoder := xml.NewEncoder(xmlFile)
+	encoder.Indent("", "\t")
 	err = encoder.Encode(&post)
 
 	if err != nil {
