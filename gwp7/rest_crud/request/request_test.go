@@ -10,6 +10,13 @@ import (
 	"github.com/Oyekunle-Mark/taypi/gwp7/rest_crud/data"
 )
 
+var mux *ServeMux
+var writer *ResponseRecorder
+
+func TestMain(m *testing.M) {
+
+}
+
 func TestHandleGet(t *testing.T) {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/post/", HandleRequest)
