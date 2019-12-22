@@ -28,6 +28,10 @@ type Comment struct {
 	Author  string `json:"author"`
 }
 
+func unmarshal(filename string) (Post, error) {
+	
+}
+
 func main() {
 	jsonFile, err := os.Open("post.json")
 
