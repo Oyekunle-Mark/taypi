@@ -25,3 +25,7 @@ func TestDecode(t *testing.T) {
 func TestEncode(t *testing.T) {
 	t.Skip("Skipping encoding for now.")
 }
+
+func TestLongRunningTest(t *testing.T) {
+	
+}
