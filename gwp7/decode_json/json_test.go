@@ -21,3 +21,7 @@ func TestDecode(t *testing.T) {
 		t.Errorf("Wrong post content. Got %s, was expecting %s", post.Content, content)
 	}
 }
+
+func TestEncode(t *testing.T) {
+	t.Skip("Skipping encoding for now.")
+}
