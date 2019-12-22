@@ -28,6 +28,28 @@ type Comment struct {
 	Author  string `json:"author"`
 }
 
+func decode(filename string) (Post, error) {
+	var post Post
+	jsonFile, err := os.Open("post.json")
+
+	if err != nil {
+		fmt.Println("Error opening the JSON file:", err)
+		return post, err
+	}
+
+	defer jsonFile.Close()
+
+	decoder := json.NewDecoder(jsonFile)
+	err = decoder.Decode(&post)
+
+	if err != nil {
+		fmt.Println("Error decoding JSON file:", err)
+		return post, err
+	}
+
+	return post, nil
+}
+
 func main() {
 	jsonFile, err := os.Open("post.json")
 
