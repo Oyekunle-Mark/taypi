@@ -37,3 +37,7 @@ func TestLongRunningTest(t *testing.T) {
 	// simulate some processing
 	time.Sleep(2 * time.Second)
 }
+
+func BenchmarkDecode(b *testing.B) {
+	
+}
