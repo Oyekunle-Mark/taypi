@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"os"
 )
 
@@ -51,31 +50,12 @@ func decode(filename string) (Post, error) {
 }
 
 func main() {
-	jsonFile, err := os.Open("post.json")
+	post, err := decode("post.json")
 
 	if err != nil {
-		fmt.Println("Error opening file:", err)
+		fmt.Println("Error reading JSON file:", err)
 		return
 	}
 
-	defer jsonFile.Close()
-
-	decoder := json.NewDecoder(jsonFile)
-
-	for {
-		var post Post
-
-		err := decoder.Decode(&post)
-
-		if err == io.EOF {
-			break
-		}
-
-		if err != nil {
-			fmt.Println("Error decoding JSON:", err)
-			return
-		}
-
-		fmt.Println(post)
-	}
+	fmt.Println(post)
 }
