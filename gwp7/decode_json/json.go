@@ -29,7 +29,7 @@ type Comment struct {
 
 func decode(filename string) (Post, error) {
 	var post Post
-	jsonFile, err := os.Open("post.json")
+	jsonFile, err := os.Open(filename)
 
 	if err != nil {
 		fmt.Println("Error opening the JSON file:", err)
