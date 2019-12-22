@@ -51,24 +51,12 @@ func unmarshal(filename string) (Post, error) {
 }
 
 func main() {
-	jsonFile, err := os.Open("post.json")
+	post, err := unmarshal("post.json")
 
 	if err != nil {
-		fmt.Println("Error opening file:", err)
+		fmt.Println("Error:", err)
 		return
 	}
 
-	defer jsonFile.Close()
-
-	jsonData, err := ioutil.ReadAll(jsonFile)
-
-	if err != nil {
-		fmt.Println("Error reading json data:", err)
-		return
-	}
-
-	var post Post
-
-	json.Unmarshal(jsonData, &post)
 	fmt.Println(post)
 }
