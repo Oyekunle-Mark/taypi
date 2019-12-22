@@ -29,7 +29,25 @@ type Comment struct {
 }
 
 func unmarshal(filename string) (Post, error) {
-	
+	var post Post
+	jsonFile, err := os.Open(filename)
+
+	if err != nil {
+		fmt.Println("Error opening JSON file:", err)
+		return post, err
+	}
+
+	defer jsonFile.Close()
+
+	jsonData, err := ioutil.ReadAll(jsonFile)
+
+	if err != nil {
+		fmt.Println("Error reading JSON file:", err)
+		return post, err
+	}
+
+	json.Unmarshal(jsonData, &post)
+	return post, nil
 }
 
 func main() {
