@@ -39,5 +39,7 @@ func TestLongRunningTest(t *testing.T) {
 }
 
 func BenchmarkDecode(b *testing.B) {
-	
+	for i := 0; i < b.N; i++ {
+		decode("post.json")
+	}
 }
