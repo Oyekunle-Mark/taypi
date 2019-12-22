@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"strings"
 	"testing"
 
@@ -14,7 +15,9 @@ var mux *http.ServeMux
 var writer *httptest.ResponseRecorder
 
 func TestMain(m *testing.M) {
-
+	setUp()
+	code := m.Run()
+	os.Exit(code)
 }
 
 func setUp() {
