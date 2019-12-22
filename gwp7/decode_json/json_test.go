@@ -38,6 +38,7 @@ func TestLongRunningTest(t *testing.T) {
 	time.Sleep(2 * time.Second)
 }
 
+// benchmarks the decode function
 func BenchmarkDecode(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		decode("post.json")
