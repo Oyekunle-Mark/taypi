@@ -28,10 +28,6 @@ func setUp() {
 }
 
 func TestHandleGet(t *testing.T) {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/post/", HandleRequest)
-
-	writer := httptest.NewRecorder()
 	request, _ := http.NewRequest("GET", "/post/1", nil)
 	mux.ServeHTTP(writer, request)
 
@@ -48,15 +44,11 @@ func TestHandleGet(t *testing.T) {
 }
 
 func TestHandlePut(t *testing.T) {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/post/", HandleRequest)
-
 	jsonData := strings.NewReader(`{
 		"author": "Chief Oye",
 		"content": "The end is upon us."
 	}`)
 
-	writer := httptest.NewRecorder()
 	request, _ := http.NewRequest("PUT", "/post/1", jsonData)
 
 	mux.ServeHTTP(writer, request)
