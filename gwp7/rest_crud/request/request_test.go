@@ -28,3 +28,7 @@ func TestHandleGet(t *testing.T) {
 		t.Error("Cannot retrieve JSON post")
 	}
 }
+
+func TestHandlePut(t *testing.T) {
+	
+}
