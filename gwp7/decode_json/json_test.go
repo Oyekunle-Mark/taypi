@@ -34,5 +34,6 @@ func TestLongRunningTest(t *testing.T) {
 		t.Skip("Skipping long-running test in short mode")
 	}
 
+	// simulate some processing
 	time.Sleep(2 * time.Second)
 }
