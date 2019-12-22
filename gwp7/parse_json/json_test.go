@@ -21,3 +21,9 @@ func TestUnmarshall(t *testing.T) {
 		t.Errorf("Wrong post content. Got %s, was expecting %s", post.Content, content)
 	}
 }
+
+func BenchmarkUnmarshall(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		unmarshal("post.json")
+	}
+}
