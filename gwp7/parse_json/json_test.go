@@ -3,7 +3,7 @@ package main
 import "testing"
 
 func TestUnmarshall(t *testing.T) {
-	post, err := unmarshal("post.go")
+	post, err := unmarshal("post.json")
 
 	if err != nil {
 		t.Error(err)
