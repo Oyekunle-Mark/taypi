@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"github.com/Oyekunle-Mark/taypi/gwp7/rest_crud/data"
@@ -30,5 +31,20 @@ func TestHandleGet(t *testing.T) {
 }
 
 func TestHandlePut(t *testing.T) {
-	
+	mux := http.NewServeMux()
+	mux.HandleFunc("/post/", HandleRequest)
+
+	jsonData := strings.NewReader(`{
+		"author": "Chief Oye",
+		"content": "The end is upon us."
+	}`)
+
+	writer := httptest.NewRecorder()
+	request, _ := http.NewRequest("PUT", "/post/1", jsonData)
+
+	mux.ServeHTTP(writer, request)
+
+	if writer.Code != 200 {
+		t.Errorf("Response code is %v, expected 200.", writer.Code)
+	}
 }
