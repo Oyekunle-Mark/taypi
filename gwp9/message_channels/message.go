@@ -2,28 +2,35 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"sync"
 )
 
-func thrower(ch chan int) {
+func thrower(ch chan int, wg *sync.WaitGroup) {
 	for i := 0; i < 5; i++ {
 		ch <- i
 		fmt.Printf("Threw >> %d\n", i)
 	}
+
+	wg.Done()
 }
 
-func catcher(ch chan int) {
+func catcher(ch chan int, wg *sync.WaitGroup) {
 	for i := 0; i < 5; i++ {
 		msg := <-ch
 		fmt.Printf("Caught << %d\n", msg)
 	}
+
+	wg.Done()
 }
 
 func main() {
 	ch := make(chan int)
 
-	go thrower(ch)
-	go catcher(ch)
+	var wg sync.WaitGroup
+	wg.Add(2)
 
-	time.Sleep(100 * time.Millisecond)
+	go thrower(ch, &wg)
+	go catcher(ch, &wg)
+
+	wg.Wait()
 }
