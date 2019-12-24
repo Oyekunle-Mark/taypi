@@ -23,3 +23,13 @@ func printLetters(wg *sync.WaitGroup) {
 
 	wg.Done()
 }
+
+func main() {
+	var wg sync.WaitGroup
+	wg.Add(2)
+
+	go printNumbers(&wg)
+	go printLetters(&wg)
+
+	wg.Wait()
+}
