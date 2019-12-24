@@ -13,3 +13,12 @@ func printNumbers(ch chan bool) {
 
 	ch <- true
 }
+
+func printLetters(ch chan bool) {
+	for i := 'A'; i < 'A'+10; i++ {
+		time.Sleep(1 * time.Microsecond)
+		fmt.Printf("%c ", i)
+	}
+
+	ch <- true
+}
