@@ -9,7 +9,7 @@ func printNumbers1() {
 }
 
 func printLetters1() {
-	for i := 'A'; i < 'A' + 10; i++ {
+	for i := 'A'; i < 'A'+10; i++ {
 		fmt.Printf("%c ", i)
 	}
 }
@@ -22,4 +22,8 @@ func print1() {
 func goPrint1() {
 	go printNumbers1()
 	go printLetters1()
+}
+
+func main() {
+
 }
