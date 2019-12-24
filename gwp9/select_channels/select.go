@@ -22,6 +22,8 @@ func main() {
 			fmt.Printf("%s from A\n", msg)
 		case msg := <-ch2:
 			fmt.Printf("%s from B\n", msg)
+		default:
+			fmt.Println("Default")
 		}
 	}
 }
