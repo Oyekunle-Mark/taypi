@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 func callerA(ch chan string) {
@@ -24,9 +23,7 @@ func main() {
 	var msg string
 	ok1, ok2 := true, true
 
-	for i := 0; i < 5; i++ {
-		time.Sleep(1 * time.Microsecond)
-
+	for ok1 || ok2 {
 		select {
 		case msg, ok1 = <-ch1:
 			if ok1 {
