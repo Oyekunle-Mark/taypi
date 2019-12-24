@@ -30,3 +30,9 @@ func BenchmarkGoPrint1(b *testing.B) {
 		goPrint1()
 	}
 }
+
+func BenchmarkPrint2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		print2()
+	}
+}
