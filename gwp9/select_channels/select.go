@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func callerA(ch chan string) {
-	ch <- "Hello, World."
+	ch <- "Hello, World!"
 }
 
 func callerB(ch chan string) {
