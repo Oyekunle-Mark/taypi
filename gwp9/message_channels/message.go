@@ -24,7 +24,7 @@ func catcher(ch chan int, wg *sync.WaitGroup) {
 }
 
 func main() {
-	ch := make(chan int)
+	ch := make(chan int, 3)
 
 	var wg sync.WaitGroup
 	wg.Add(2)
