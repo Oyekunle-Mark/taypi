@@ -22,3 +22,11 @@ func printLetters(ch chan bool) {
 
 	ch <- true
 }
+
+func main() {
+	ch := make(chan bool)
+	go printNumbers(ch)
+	go printLetters(ch)
+	<-ch
+	<-ch
+}
