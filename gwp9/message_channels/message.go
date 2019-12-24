@@ -8,3 +8,10 @@ func thrower(ch chan int) {
 		fmt.Printf("Threw >> %d", i)
 	}
 }
+
+func catcher(ch chan int) {
+	for i := 0; i < 5; i++ {
+		msg := <-ch
+		fmt.Printf("Caught << %d", msg)
+	}
+}
