@@ -1,9 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func printNumbers1() {
 	for i := 0; i < 10; i++ {
+		fmt.Printf("%d ", i)
+	}
+}
+
+func printNumbers2() {
+	for i := 0; i < 10; i++ {
+		time.Sleep(1 * time.Microsecond)
 		fmt.Printf("%d ", i)
 	}
 }
