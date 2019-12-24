@@ -7,10 +7,12 @@ import (
 
 func callerA(ch chan string) {
 	ch <- "Hello, World!"
+	close(ch)
 }
 
 func callerB(ch chan string) {
 	ch <- "Hola, Mundo!"
+	close(ch)
 }
 
 func main() {
@@ -19,16 +21,21 @@ func main() {
 	go callerA(ch1)
 	go callerB(ch2)
 
+	var msg string
+	ok1, ok2 := true, true
+
 	for i := 0; i < 5; i++ {
 		time.Sleep(1 * time.Microsecond)
 
 		select {
-		case msg := <-ch1:
-			fmt.Printf("%s from A\n", msg)
-		case msg := <-ch2:
-			fmt.Printf("%s from B\n", msg)
-		default:
-			fmt.Println("Default")
+		case msg, ok1 = <-ch1:
+			if ok1 {
+				fmt.Printf("%s from A\n", msg)
+			}
+		case msg, ok2 = <-ch2:
+			if ok2 {
+				fmt.Printf("%s from B\n", msg)
+			}
 		}
 	}
 }
